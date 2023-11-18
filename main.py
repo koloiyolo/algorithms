@@ -11,11 +11,9 @@ def kmeans_route():
         centroids = request.form['centroids']
         iters = request.form['iters']
 
-        return jsonify('clusters', kmeans(data, centroids, iters))
+        return jsonify('clusters', kmeans.kmeans(data, centroids, iters))
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     app.run(debug=True)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/

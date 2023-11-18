@@ -10,7 +10,7 @@ def euclidean_distance(point1, point2):
 
 
 def x_y_min(data):
-    x, y = data[0]
+    [x, y] = data[0]
     for elem in data:
         if elem[0] < x:
             x = elem[0]
@@ -22,7 +22,7 @@ def x_y_min(data):
 
 
 def x_y_max(data):
-    x, y = data[0]
+    [x, y] = data[0]
     for elem in data:
         if elem[0] > x:
             x = elem[0]
