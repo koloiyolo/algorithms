@@ -53,10 +53,3 @@ def kmeans(data, centroid_count, iters=100):
         clusters.append(cluster)
 
     return clusters
-
-
-data = []
-for _ in range(30):
-    data.append([randrange(-20, 20), randrange(-20, 20)])
-
-clusters = kmeans(data, 3)
