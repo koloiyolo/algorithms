@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 
 def euclidean_distance(point1, point2):
@@ -9,28 +10,22 @@ def euclidean_distance(point1, point2):
     return np.sqrt(sums)
 
 
-def x_y_min(data):
-    [x, y] = data[0]
+def getmin(data):
+    min = list(data[0])
     for elem in data:
-        if elem[0] < x:
-            x = elem[0]
-
-        if elem[1] < y:
-            y = elem[1]
-
-    return [x, y]
+        for i, value in enumerate(elem):
+            if min[i] > value:
+                min[i] = math.floor(elem[i])
+    return min
 
 
-def x_y_max(data):
-    [x, y] = data[0]
+def getmax(data):
+    max = list(data[0])
     for elem in data:
-        if elem[0] > x:
-            x = elem[0]
-
-        if elem[1] > y:
-            y = elem[1]
-
-    return [x, y]
+        for i, value in enumerate(elem):
+            if max[i] < value:
+                max[i] = math.floor(elem[i])
+    return max
 
 
 def means(data):
@@ -41,4 +36,3 @@ def means(data):
         sums += elem
 
     return sums / count
-

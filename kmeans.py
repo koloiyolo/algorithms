@@ -4,16 +4,17 @@ import maths
 
 
 def kmeans(data, centroid_count, iters=100):
-    xymin = maths.x_y_min(data)
-    xymax = maths.x_y_max(data)
+    min = maths.getmin(data)
 
+    max = maths.getmax(data)
+
+    print(min, max)
     data_with_centroids = []
     centroids = []
     clusters = []
-
-    for i in range(centroid_count):
-        centroids.append([randrange(xymin[0], xymax[0]), randrange(xymin[1], xymax[1]), ])
-
+    for _ in range(centroid_count):
+        centroids.append([randrange(min[i], max[i]) for i in range(len(min))])
+    print(centroids)
     for _ in range(iters):
         data_with_centroids.clear()
         for point in data:
@@ -24,6 +25,7 @@ def kmeans(data, centroid_count, iters=100):
             data_with_centroids.append([point, current_centroid])
 
         for i, centroid in enumerate(centroids):
+            print(centroids)
             count = 0
             points = []
             scaling_factor = 2 * len(data)
@@ -34,8 +36,8 @@ def kmeans(data, centroid_count, iters=100):
                     points.append(point[0])
 
             for point in points:
-                centroid[0] += round(maths.means([point[0], centroid[0]]) / scaling_factor)
-                centroid[1] += round(maths.means([point[1], centroid[1]]) / scaling_factor)
+                for j in range(len(centroid)):
+                    centroid[j] += round(maths.means([point[j], centroid[j]]) / scaling_factor)
 
     data_with_centroids.clear()
     for point in data:
@@ -51,5 +53,7 @@ def kmeans(data, centroid_count, iters=100):
             if centroid == point[1]:
                 cluster.append(point[0])
         clusters.append(cluster)
+    for i in range(centroid_count):
+        print(clusters[i])
 
     return clusters
