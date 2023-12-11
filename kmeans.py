@@ -1,12 +1,8 @@
 from random import randrange
-
 import maths
 
 
 def kmeans(data, centroid_count, iters=100):
-
-    min = maths.getmin(data.copy())
-    max = maths.getmax(data.copy())
 
     data_copy = data.copy()
     data_with_centroids = []
@@ -14,12 +10,12 @@ def kmeans(data, centroid_count, iters=100):
     clusters = []
 
     if len(data) > 1000:
-        sampled_data = [data.pop(randrange(0, len(data))) for _ in range(100)]
+        sampled_data = [data.pop(randrange(0, len(data))) for _ in range(1000)]
         data.clear()
         data.extend(sampled_data)
 
     for _ in range(centroid_count):
-        centroids.append([randrange(0, 1000)/1000 for i in range(len(min))])
+        centroids.append([randrange(0, 1000)/1000 for i in range(len(data[0]))])
 
     for _ in range(iters):
         data_with_centroids.clear()
@@ -73,8 +69,8 @@ def kmeans(data, centroid_count, iters=100):
     return clusters
 
 
-data = [[randrange(0, 1000)/1000, randrange(0, 1000)/1000, randrange(0, 1000)/1000, randrange(0, 1000)/1000] for _ in range(300)]
+data = [[randrange(0, 1000)/1000 for _ in range(4)] for _ in range(100000)]
 
-print(data)
 
-print (kmeans(data, 3, 100))
+
+print (kmeans(data, 5, 100))
