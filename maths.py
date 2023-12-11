@@ -13,6 +13,7 @@ def euclidean_distance(point1, point2):
 def getmin(data):
     min = list(data[0])
     for elem in data:
+        print(elem)
         for i, value in enumerate(elem):
             if min[i] > value:
                 min[i] = math.floor(elem[i])
@@ -22,9 +23,11 @@ def getmin(data):
 def getmax(data):
     max = list(data[0])
     for elem in data:
+        print(elem)
         for i, value in enumerate(elem):
             if max[i] < value:
-                max[i] = math.floor(elem[i])
+                max[i] = math.ceil(elem[i])
+                print(max)
     return max
 
 
