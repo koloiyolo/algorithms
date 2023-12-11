@@ -14,14 +14,12 @@ def kmeans(data, centroid_count, iters=100):
     clusters = []
 
     if len(data) > 1000:
-        sampled_data = [data.pop(randrange(0, len(data))) for _ in range(1000)]
-        print(sampled_data)
+        sampled_data = [data.pop(randrange(0, len(data))) for _ in range(100)]
         data.clear()
         data.extend(sampled_data)
 
     for _ in range(centroid_count):
-        print(min, max)
-        centroids.append([randrange(min[i], max[i]) for i in range(len(min))])
+        centroids.append([randrange(0, 1000)/1000 for i in range(len(min))])
 
     for _ in range(iters):
         data_with_centroids.clear()
@@ -54,31 +52,29 @@ def kmeans(data, centroid_count, iters=100):
     #             current_centroid = centroid
     #     data_with_centroids.append([point, current_centroid])
 
-        for centroid in centroids:
-            cluster = []
-            clusters.append(cluster)
+    for centroid in centroids:
+        cluster = []
+        clusters.append(cluster)
     #     for point in data_with_centroids:
     #         if centroid == point[1]:
     #             cluster.append(point[0])
     #     clusters.append(cluster)
 
-        for point in data_copy:
-            index = 0;
-            min = maths.euclidean_distance(centroids[0], point)
-
-            for i in range(len(centroids)):
-                if min < maths.euclidean_distance(centroids[i], point):
-                    index = i
-                    min = maths.euclidean_distance(centroids[i], point)
-
-            clusters[index].append(point)
+    for point in data_copy:
+        index = 0;
+        min = maths.euclidean_distance(centroids[0], point)
+        for i in range(len(centroids)):
+            if min < maths.euclidean_distance(centroids[i], point):
+                index = i
+                min = maths.euclidean_distance(centroids[i], point)
+        clusters[index].append(point)
 
 
     return clusters
 
 
-data = [[randrange(0, 100)/100, randrange(0, 100)/100, randrange(0, 100)/100, randrange(0, 100)/100] for _ in range(3000)]
+data = [[randrange(0, 1000)/1000, randrange(0, 1000)/1000, randrange(0, 1000)/1000, randrange(0, 1000)/1000] for _ in range(300)]
 
 print(data)
 
-print (kmeans(data, 4, 100))
+print (kmeans(data, 3, 100))
