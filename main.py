@@ -1,8 +1,8 @@
 import json
 
 from flask import Flask, request, jsonify
-import kmeans
-import ahc
+import algorithms.kmeans as kmeans
+import algorithms.ahc as ahc
 
 app = Flask(__name__)
 kmeans = kmeans.Kmeans()
